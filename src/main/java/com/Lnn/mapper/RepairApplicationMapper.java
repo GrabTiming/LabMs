@@ -1,11 +1,16 @@
 package com.Lnn.mapper;
 
+import com.Lnn.domain.entity.RepairApplication;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.apache.ibatis.annotations.Mapper;
+
 /**
  * (RepairApplication)表数据库访问层
  *
  * @since 2024-04-25 21:15:22
  */
-public interface RepairApplicationMapper {
+@Mapper
+public interface RepairApplicationMapper extends BaseMapper<RepairApplication> {
 
 
 }

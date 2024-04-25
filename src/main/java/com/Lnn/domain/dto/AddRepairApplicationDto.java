@@ -1,6 +1,4 @@
-package com.Lnn.domain.entity;
-
-import java.util.Date;
+package com.Lnn.domain.dto;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
@@ -8,16 +6,13 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
 
-/**
- * 报修申请
- * @author makejava
- * @since 2024-04-25 21:15:22
- */
+
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-public class RepairApplication  {
+@NoArgsConstructor
+public class AddRepairApplicationDto {
 
     @TableId(type = IdType.AUTO)
     private Integer id;
@@ -39,7 +34,7 @@ public class RepairApplication  {
     /**
      * 实验室名称
      */
-    private String labName;
+    private String LabName;
 
     /**
      * 故障描述
@@ -50,11 +45,4 @@ public class RepairApplication  {
      */
     private Date createTime;
 
-    /**
-     * 报修状态
-     */
-    private Integer state;
-
-
 }
-

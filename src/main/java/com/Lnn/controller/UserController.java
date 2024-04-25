@@ -6,6 +6,7 @@ import com.Lnn.domain.dto.SelectNameDto;
 import com.Lnn.domain.dto.UserLoginDTO;
 import com.Lnn.domain.dto.UserRegisterDTO;
 import com.Lnn.service.UserService;
+import org.hibernate.validator.constraints.Range;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -42,7 +43,7 @@ public class UserController {
 
     //查询一类用户（1学生，2老师，3实验员）
     @GetMapping("/select/{role}")
-    public Result selectByCategory(@PathVariable("role") @Min(1) @Max(3) Integer role)
+    public Result selectByCategory(@PathVariable("role") @Range(min=1,max=3) Integer role)
     {
         return userService.selectByCategory(role);
     }
