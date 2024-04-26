@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.Lnn.mapper.RepairApplicationMapper">
+
+    <!--查询管理的实验室的报修申请 -->
+    <select id="getLabRepair" resultType="com.Lnn.domain.entity.RepairApplication">
+        select ra.id, lab.lab_name, teacher_name, description, create_time, state
+        from repair_application ra left join lab on ra.lab_id= lab.id
+        where lab.admin_id = #{id}
+    </select>
+</mapper>

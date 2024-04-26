@@ -1,5 +1,6 @@
 package com.Lnn.domain.entity;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 import com.baomidou.mybatisplus.annotation.IdType;
@@ -48,7 +49,7 @@ public class RepairApplication  {
     /**
      * 报修日期
      */
-    private Date createTime;
+    private LocalDateTime createTime;
 
     /**
      * 报修状态

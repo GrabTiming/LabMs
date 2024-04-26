@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 
@@ -14,6 +15,8 @@ import java.util.Date;
 @NoArgsConstructor
 public class RepairApplicationVO {
 
+
+    private Integer id;
     /**
      * 实验室名称
      */
@@ -26,7 +29,7 @@ public class RepairApplicationVO {
     /**
      * 报修日期
      */
-    private Date createTime;
+    private LocalDateTime createTime;
 
     /**
      * 报修状态

@@ -2,6 +2,7 @@ package com.Lnn.service.impl;
 
 import com.Lnn.domain.Result;
 import com.Lnn.domain.dto.AddRepairApplicationDto;
+import com.Lnn.domain.dto.UpdateRepairApplicationDto;
 import com.Lnn.domain.vo.RepairApplicationVO;
 import com.Lnn.util.BeanCopyUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
@@ -12,6 +13,7 @@ import com.Lnn.service.RepairApplicationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 /**
@@ -31,6 +33,8 @@ public class RepairApplicationServiceImpl extends ServiceImpl<RepairApplicationM
 
         RepairApplication repairApplication = BeanCopyUtil.copyBean(addRepairApplicationDto,RepairApplication.class);
         repairApplication.setState(0); //状态设为未维修
+        repairApplication.setCreateTime(LocalDateTime.now());
+
         repairApplicationMapper.insert(repairApplication);
 
         return Result.ok("报修申请已提交",null);
@@ -52,5 +56,30 @@ public class RepairApplicationServiceImpl extends ServiceImpl<RepairApplicationM
         return Result.ok(result);
 
     }
+
+
+    //实验员查看自己管理的实验室的 报修申请
+    @Override
+    public Result getLabRepair(Integer id) {
+         //实验室+ 报修申请
+         List<RepairApplication> repairList = repairApplicationMapper.getLabRepair(id);
+         List<RepairApplicationVO> result = BeanCopyUtil.copyBeanList(repairList, RepairApplicationVO.class);
+         return Result.ok(result);
+    }
+
+    //实验员 修改 报修申请的 状态 ，并且修改维修 说明
+    @Override
+    public Result updateRepair(UpdateRepairApplicationDto updateRepairApplicationDto) {
+
+        RepairApplication repairApplication = repairApplicationMapper.selectById(updateRepairApplicationDto.getId());
+        repairApplication.setState(updateRepairApplicationDto.getState());
+        repairApplication.setDescription(updateRepairApplicationDto.getDescription());
+
+        repairApplicationMapper.updateById(repairApplication);
+        return Result.ok("修改成功",null);
+    }
+
+
+
 }
 

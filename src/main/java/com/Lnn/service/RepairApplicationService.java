@@ -2,6 +2,7 @@ package com.Lnn.service;
 
 import com.Lnn.domain.Result;
 import com.Lnn.domain.dto.AddRepairApplicationDto;
+import com.Lnn.domain.dto.UpdateRepairApplicationDto;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.Lnn.domain.entity.RepairApplication;
 
@@ -16,5 +17,9 @@ public interface RepairApplicationService extends IService<RepairApplication> {
     Result add(AddRepairApplicationDto addRepairApplicationDto);
 
     Result getRepairAppByTeacherId(Integer id);
+
+    Result getLabRepair(Integer id);
+
+    Result updateRepair(UpdateRepairApplicationDto updateRepairApplicationDto);
 }
 

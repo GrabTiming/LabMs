@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 
@@ -43,6 +44,6 @@ public class AddRepairApplicationDto {
     /**
      * 报修日期
      */
-    private Date createTime;
+    private LocalDateTime createTime;
 
 }

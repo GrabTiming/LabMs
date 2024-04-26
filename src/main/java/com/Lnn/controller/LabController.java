@@ -5,6 +5,7 @@ import com.Lnn.domain.Result;
 import com.Lnn.domain.dto.AddRepairApplicationDto;
 import com.Lnn.domain.dto.CourseApplicationDto;
 import com.Lnn.domain.dto.CourseApplicationUpdateDto;
+import com.Lnn.domain.dto.UpdateRepairApplicationDto;
 import com.Lnn.domain.entity.CourseApplication;
 import com.Lnn.service.CourseApplicationService;
 import com.Lnn.service.RepairApplicationService;
@@ -60,15 +61,27 @@ public class LabController {
         return repairApplicationService.add(addRepairApplicationDto);
     }
 
-    //查询教师提交的报修申请
-    @GetMapping("/getRepair")
+    //教师：查询教师提交的报修申请
+    @GetMapping("/getRepair/teacher")
     public Result getRepair(@RequestParam("teacherId") Integer id)
     {
         return repairApplicationService.getRepairAppByTeacherId(id);
     }
 
-    //实验员：列出属于自己管理的实验室
+
+
+    //实验员：列出属于自己管理的实验室 的报修申请
+    @GetMapping("getRepair/LabAdmin")
+    public Result getLabRepair(@RequestParam("teacherId") Integer id)
+    {
+        return  repairApplicationService.getLabRepair(id);
+    }
 
     //实验员：设置报修申请的状态
+    @PostMapping("updateRepair")
+    public Result updateRepair(@RequestBody UpdateRepairApplicationDto updateRepairApplicationDto)
+    {
+        return repairApplicationService.updateRepair(updateRepairApplicationDto);
+    }
 
 }
