@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.Lnn.mapper.CourseApplicationMapper">
+
+
+    <select id="getTimeSlotByLabId" resultType="com.Lnn.domain.dto.TimeSlot">
+        select start_week,end_week,section
+        from course_application ca left join lab_course lc on ca.course_id = lc.id
+        where lab_id = #{labId} and ca.state = 1
+    </select>
+</mapper>
