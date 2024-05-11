@@ -16,9 +16,11 @@ public interface RepairApplicationService extends IService<RepairApplication> {
 
     Result add(AddRepairApplicationDto addRepairApplicationDto);
 
-    Result getRepairAppByTeacherId(Integer id);
+    //教师查询 报修申请
+    Result getRepairAppByTeacherId(Integer teacherId,Integer pageNum,Integer pageSize);
 
-    Result getLabRepair(Integer id);
+    //实验员查询 自己管的实验室的报修申请
+    Result getLabRepair(Integer teacherId,Integer pageNum,Integer pageSize);
 
     Result updateRepair(UpdateRepairApplicationDto updateRepairApplicationDto);
 }

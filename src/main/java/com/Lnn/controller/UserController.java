@@ -8,11 +8,8 @@ import com.Lnn.domain.dto.UserRegisterDTO;
 import com.Lnn.service.UserService;
 import org.hibernate.validator.constraints.Range;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
 
 @RequestMapping("/user")
 @RestController
@@ -40,22 +37,23 @@ public class UserController {
         return userService.register(userRegisterDTO);
     }
 
+    //TODO 批量导入 注册
+
 
     //查询一类用户（1学生，2老师，3实验员）
-    @GetMapping("/select/{role}")
-    public Result selectByCategory(@PathVariable("role") @Range(min=1,max=3) Integer role)
+    @GetMapping("/select")
+    public Result selectByCategory(@Range(min=1,max=3) Integer role,
+                                   Integer pageNum,Integer pageSize)
     {
-        return userService.selectByCategory(role);
+        return userService.selectByCategory(role,pageNum,pageSize);
     }
 
 
     //根据姓名、身份查询用户
     @PostMapping("/selectByName")
-    public Result selectByName(SelectNameDto selectNameDto)
+    public Result selectByName(@RequestBody SelectNameDto selectNameDto)
     {
         return userService.selectByName(selectNameDto);
     }
-
-
 
 }

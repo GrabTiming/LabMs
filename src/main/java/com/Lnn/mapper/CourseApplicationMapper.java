@@ -1,8 +1,11 @@
 package com.Lnn.mapper;
 
+import com.Lnn.domain.dto.TimeSlot;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.Lnn.domain.entity.CourseApplication;
 import org.apache.ibatis.annotations.Mapper;
+
+import java.util.List;
 
 
 /**
@@ -13,7 +16,7 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface CourseApplicationMapper extends BaseMapper<CourseApplication> {
-    
-    
+
+    List<TimeSlot> getTimeSlotByLabId(Integer labId);
 }
 

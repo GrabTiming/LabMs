@@ -7,6 +7,7 @@ import com.Lnn.domain.vo.CourseApplicationVO;
 import com.Lnn.util.BeanCopyUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.Lnn.mapper.CourseApplicationMapper;
 import com.Lnn.domain.entity.CourseApplication;
@@ -41,21 +42,23 @@ public class CourseApplicationServiceImpl extends ServiceImpl<CourseApplicationM
 
     //教师查看自己的排课申请
     @Override
-    public Result getCourseByTeacherId(Integer id) {
+    public Result getCourseByTeacherId(Integer teacherId,Integer pageNum,Integer pageSize) {
 
         LambdaQueryWrapper<CourseApplication> queryWrapper = new LambdaQueryWrapper<>();
 
-        queryWrapper.eq(CourseApplication::getTeacherId,id);
+        queryWrapper.eq(CourseApplication::getTeacherId,teacherId);
 
-        List<CourseApplication> courseApplications = courseApplicationMapper.selectList(queryWrapper);
+        Page<CourseApplication> page = new Page<>(pageNum,pageSize);
+        page(page,queryWrapper);
 
-        List<CourseApplicationVO> result = BeanCopyUtil.copyBeanList(courseApplications, CourseApplicationVO.class);
+        List<CourseApplicationVO> result = BeanCopyUtil.copyBeanList(page.getRecords(), CourseApplicationVO.class);
 
         return  Result.ok(result);
     }
 
 
 
+    //修改未排课的申请
     @Override
     public Result modify(CourseApplicationUpdateDto courseApplicationUpdateDto) {
 
@@ -64,6 +67,15 @@ public class CourseApplicationServiceImpl extends ServiceImpl<CourseApplicationM
         courseApplicationMapper.updateById(courseApplication);
 
         return Result.ok("修改成功",null);
+    }
+
+    @Override
+    public Result getAll(Integer pageNum,Integer pageSize) {
+
+        Page<CourseApplication> page = new Page<>(pageNum,pageSize);
+        page(page,null);
+
+        return Result.ok(BeanCopyUtil.copyBeanList(page.getRecords(), CourseApplicationVO.class));
     }
 }
 

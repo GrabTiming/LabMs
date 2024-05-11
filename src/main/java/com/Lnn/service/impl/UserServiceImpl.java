@@ -12,6 +12,7 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.update.UpdateWrapper;
 import com.baomidou.mybatisplus.core.toolkit.Wrappers;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.Lnn.mapper.UserMapper;
 import com.Lnn.domain.entity.User;
@@ -80,13 +81,15 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
 
     //根据类别查询
     @Override
-    public Result selectByCategory(Integer role) {
+    public Result selectByCategory(Integer role,Integer pageNum,Integer pageSize) {
 
         LambdaQueryWrapper<User> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.eq(User::getRole,role);
 
         //分页
-        List<User> users = this.getBaseMapper().selectList(queryWrapper);
+        Page<User> page = new Page<>(pageNum,pageSize);
+        page(page,queryWrapper);
+        List<User> users = page.getRecords();
 
         //学生
         if(role==1)
@@ -110,7 +113,21 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
         LambdaQueryWrapper<User> queryWrapper = new LambdaQueryWrapper<>();
         queryWrapper.like(User::getUsername,selectNameDto.getUsername()+"%")
                 .eq(User::getRole,selectNameDto.getRole());
-        return Result.ok(this.getBaseMapper().selectList(queryWrapper));
+
+        Page<User> page = new Page<>(selectNameDto.getPageNum(),selectNameDto.getPageSize());
+        page(page,queryWrapper);
+        //学生
+        if(selectNameDto.getRole()==0)
+        {
+            List<User> list = page.getRecords();
+            return Result.ok(BeanCopyUtil.copyBeanList(list,StudentVO.class));
+        }
+        //老师
+        else
+        {
+            List<User> list = page.getRecords();
+            return Result.ok(BeanCopyUtil.copyBeanList(list, TeacherVO.class));
+        }
     }
 }
 

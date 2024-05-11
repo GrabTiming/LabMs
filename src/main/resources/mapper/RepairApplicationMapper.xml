@@ -7,5 +7,6 @@
         select ra.id, lab.lab_name, teacher_name, description, create_time, state
         from repair_application ra left join lab on ra.lab_id= lab.id
         where lab.admin_id = #{id}
+        limit #{offset},#{pageSize}
     </select>
 </mapper>

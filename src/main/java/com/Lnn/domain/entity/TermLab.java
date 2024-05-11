@@ -10,30 +10,25 @@ import lombok.NoArgsConstructor;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 /**
- * (LabCourse)表实体类
+ * (TermLab)表实体类
  *
  * @author Liang2003
- * @since 2024-04-26 16:17:46
+ * @since 2024-05-09 12:20:55
  */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@TableName("lab_course")
-public class LabCourse  {
+@TableName("term_lab")
+public class TermLab  {
     
-    @TableId(type= IdType.AUTO)
+    @TableId(type =  IdType.AUTO)
     private Integer id;
 
-    //实验室id
-    private Integer labId;
-
     private String term;
-
-    //实验室名称
-    private String labName;
     
-    //排课申请id
-    private Integer applicationId;
+    private Integer labId;
+    
+    private String state;
     
     
 }

@@ -37,6 +37,8 @@ public class CourseApplicationVO {
     //结束周
     private Integer endWeek;
 
+    private String day;
+
     //节次
     private String section;
 

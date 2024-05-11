@@ -4,6 +4,8 @@ import java.time.LocalDateTime;
 import java.util.Date;
 
 import java.io.Serializable;
+
+import com.baomidou.mybatisplus.annotation.IdType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -21,7 +23,7 @@ import com.baomidou.mybatisplus.annotation.TableName;
 @TableName("lab_borrow")
 public class LabBorrow  {
     
-    @TableId
+    @TableId(type = IdType.AUTO)
     private Integer id;
 
     //实验室id

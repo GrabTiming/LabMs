@@ -22,7 +22,7 @@ public interface UserService extends IService<User> {
 
     Result modifyPwd(UserLoginDTO userLoginDTO);
 
-    Result selectByCategory(Integer category);
+    Result selectByCategory(Integer category,Integer pageNum,Integer pageSize);
 
     Result selectByName(SelectNameDto selectNameDto);
 }

@@ -4,6 +4,7 @@ package com.Lnn.domain.entity;
 import java.io.Serializable;
 
 import com.Lnn.annotation.ListValue;
+import com.baomidou.mybatisplus.annotation.IdType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -23,7 +24,7 @@ import org.springframework.validation.annotation.Validated;
 @TableName("course_application")
 public class CourseApplication  {
     
-    @TableId
+    @TableId(type = IdType.AUTO)
     private Integer id;
 
     //上课学期
@@ -37,7 +38,6 @@ public class CourseApplication  {
     
     //实验课id
     private Integer courseId;
-
 
     //实验课名称
     private String courseName;
@@ -58,6 +58,9 @@ public class CourseApplication  {
     
     //结束周
     private Integer endWeek;
+
+    //星期几
+    private String day;
     
     //节次
     private String section;

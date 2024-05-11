@@ -18,4 +18,6 @@ public class TimeSlot {
 
     private String section;
 
+    private String day;
+
 }

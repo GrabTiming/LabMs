@@ -4,17 +4,12 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-
-/**
- * 根据姓名、身份查询用户的dto
- */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class SelectNameDto {
+public class GetRepairApplicationDto {
 
-    private String username;
-    private Integer role;
+    private Integer teacherId;
 
     private Integer pageNum;
     private Integer pageSize;

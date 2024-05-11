@@ -16,10 +16,12 @@ public interface CourseApplicationService extends IService<CourseApplication> {
 
     Result insert(CourseApplicationDto courseApplicationDto);
 
-    Result getCourseByTeacherId(Integer id);
+    Result getCourseByTeacherId(Integer teacherId,Integer pageNum,Integer pageSize);
 
 
     //修改未排课 的申请 的信息
     Result modify(CourseApplicationUpdateDto courseApplicationUpdateDto);
+
+    Result getAll(Integer pageNum,Integer pageSize);
 }
 

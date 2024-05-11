@@ -7,5 +7,6 @@
         select start_week,end_week,section
         from course_application ca left join lab_course lc on ca.course_id = lc.id
         where lab_id = #{labId} and ca.state = 1
+
     </select>
 </mapper>

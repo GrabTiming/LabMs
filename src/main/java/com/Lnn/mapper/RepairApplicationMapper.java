@@ -15,6 +15,6 @@ import java.util.List;
 public interface RepairApplicationMapper extends BaseMapper<RepairApplication> {
 
 
-    List<RepairApplication> getLabRepair(Integer id);
+    List<RepairApplication> getLabRepair(Integer id,Integer offset,Integer pageSize);
 }
 

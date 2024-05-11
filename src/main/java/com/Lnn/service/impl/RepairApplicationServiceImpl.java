@@ -6,6 +6,7 @@ import com.Lnn.domain.dto.UpdateRepairApplicationDto;
 import com.Lnn.domain.vo.RepairApplicationVO;
 import com.Lnn.util.BeanCopyUtil;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.Lnn.mapper.RepairApplicationMapper;
 import com.Lnn.domain.entity.RepairApplication;
@@ -43,15 +44,16 @@ public class RepairApplicationServiceImpl extends ServiceImpl<RepairApplicationM
 
     //查询 教师 提交的 报修申请
     @Override
-    public Result getRepairAppByTeacherId(Integer id) {
+    public Result getRepairAppByTeacherId(Integer teacherId,Integer pageNum,Integer pageSize) {
 
         LambdaQueryWrapper<RepairApplication> queryWrapper = new LambdaQueryWrapper<>();
 
-        queryWrapper.eq(RepairApplication::getTeacherId,id);
+        queryWrapper.eq(RepairApplication::getTeacherId,teacherId);
 
-        List<RepairApplication> repairApplications = repairApplicationMapper.selectList(queryWrapper);
+        Page<RepairApplication> page = new Page<>(pageNum,pageSize);
+        page(page,queryWrapper);
 
-        List<RepairApplicationVO> result = BeanCopyUtil.copyBeanList(repairApplications, RepairApplicationVO.class);
+        List<RepairApplicationVO> result = BeanCopyUtil.copyBeanList(page.getRecords(), RepairApplicationVO.class);
 
         return Result.ok(result);
 
@@ -60,9 +62,11 @@ public class RepairApplicationServiceImpl extends ServiceImpl<RepairApplicationM
 
     //实验员查看自己管理的实验室的 报修申请
     @Override
-    public Result getLabRepair(Integer id) {
+    public Result getLabRepair(Integer teacherId,Integer pageNum,Integer pageSize) {
          //实验室+ 报修申请
-         List<RepairApplication> repairList = repairApplicationMapper.getLabRepair(id);
+
+
+         List<RepairApplication> repairList = repairApplicationMapper.getLabRepair(teacherId,(pageNum-1)*pageSize,pageSize);
          List<RepairApplicationVO> result = BeanCopyUtil.copyBeanList(repairList, RepairApplicationVO.class);
          return Result.ok(result);
     }
