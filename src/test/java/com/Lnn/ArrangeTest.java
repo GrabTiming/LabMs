@@ -36,6 +36,7 @@ public class ArrangeTest {
             System.out.println();
         }
 
+
         // 42 + 6 +1
     }
 

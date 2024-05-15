@@ -15,7 +15,6 @@ import java.util.Date;
 @NoArgsConstructor
 public class RepairApplicationVO {
 
-
     private Integer id;
     /**
      * 实验室名称

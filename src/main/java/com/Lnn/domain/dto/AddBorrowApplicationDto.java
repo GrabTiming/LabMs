@@ -1,16 +1,13 @@
 package com.Lnn.domain.dto;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
-public class UpdateLabBorrowDto {
-
-    private Integer id;
+@AllArgsConstructor
+public class AddBorrowApplicationDto {
 
     //实验室id
     private Integer labId;
@@ -18,11 +15,6 @@ public class UpdateLabBorrowDto {
     //实验室名称
     private String labName;
 
-    //学生id
-    private Integer studentId;
-
-    //学生姓名
-    private String studentName;
 
     //申请节次
     private String section;
@@ -32,6 +24,8 @@ public class UpdateLabBorrowDto {
 
     //申请结束周
     private Integer endWeek;
+
+    private String Day;
 
     //申请原因
     private String reason;

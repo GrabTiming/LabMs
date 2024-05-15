@@ -16,7 +16,7 @@ public interface CourseApplicationService extends IService<CourseApplication> {
 
     Result insert(CourseApplicationDto courseApplicationDto);
 
-    Result getCourseByTeacherId(Integer teacherId,Integer pageNum,Integer pageSize);
+    Result getCourseByTeacherId(Integer pageNum,Integer pageSize);
 
 
     //修改未排课 的申请 的信息

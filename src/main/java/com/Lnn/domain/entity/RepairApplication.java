@@ -49,7 +49,9 @@ public class RepairApplication  {
     /**
      * 报修日期
      */
-    private LocalDateTime createTime;
+    private Date createTime;
+
+    private String term;
 
     /**
      * 报修状态

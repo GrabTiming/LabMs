@@ -1,13 +1,13 @@
 package com.Lnn.constants;
 
+import org.omg.CORBA.PUBLIC_MEMBER;
+
 import java.util.HashMap;
 import java.util.stream.Stream;
 
 public class SystemConstants {
 
     private SystemConstants(){};
-
-
     public static final int  LAB_STATE_LENGTH =  850;
 
     //星期几 转化为 数字
@@ -42,6 +42,22 @@ public class SystemConstants {
     public static final int NOT_PROCESSED = 0;
 
 
+    public static final String LOGIN_KEY_PREFIX = "Lab:";
+    public static final String LOGIN_VALUE_PREFIX = "baL:";
+
+    //当前学期
+    public static final String NOW_TERM = "now_term";
+
+    public static final  int BORROW_ACCESS_STATE = 1;
+    public static final  int BORROW_REJECT_STATE = 2;
+    public static final  int BORROW_COMPLETED_STATE = 3;
+
+    public static final String DEFAULT_PASSWORD= "123456";
+
+
+    public static final int STUDENT_ROLE = 1;
+    public static final int TEACHER_ROLE = 1;
+    public static final int LAB_ADMIN_ROLE = 1;
 
 
 }

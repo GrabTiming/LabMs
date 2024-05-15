@@ -15,5 +15,7 @@ public interface ScheduleService extends IService<Schedule> {
     Result setNowTerm(Integer id);
 
     Result getAllTerm(Integer pageNum, Integer pageSize);
+
+    Result addTerm(String term,String beginTime);
 }
 

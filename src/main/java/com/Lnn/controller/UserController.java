@@ -1,7 +1,10 @@
 package com.Lnn.controller;
 
 
+import com.Lnn.annotation.RoleAuthorize;
+import com.Lnn.constants.SystemConstants;
 import com.Lnn.domain.Result;
+import com.Lnn.domain.dto.ResetPwdDTO;
 import com.Lnn.domain.dto.SelectNameDto;
 import com.Lnn.domain.dto.UserLoginDTO;
 import com.Lnn.domain.dto.UserRegisterDTO;
@@ -18,6 +21,7 @@ public class UserController {
     @Autowired
     private UserService userService;
 
+//    @RoleAuthorize(value = {"1"})
     @GetMapping("/hello")
     public Result hello()
     {
@@ -41,6 +45,7 @@ public class UserController {
 
 
     //查询一类用户（1学生，2老师，3实验员）
+    @RoleAuthorize(value = {"0"})
     @GetMapping("/select")
     public Result selectByCategory(@Range(min=1,max=3) Integer role,
                                    Integer pageNum,Integer pageSize)
@@ -55,5 +60,13 @@ public class UserController {
     {
         return userService.selectByName(selectNameDto);
     }
+
+    //重置密码
+    @PostMapping("/resetPwd")
+    public Result resetPwd(@RequestBody ResetPwdDTO resetPwdDTO)
+    {
+        return userService.resetPwd(resetPwdDTO);
+    }
+
 
 }

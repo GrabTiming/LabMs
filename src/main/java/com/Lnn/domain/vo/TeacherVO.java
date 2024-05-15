@@ -10,8 +10,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class TeacherVO {
 
-
+    //学号
+    private String account;
     //姓名
+
     private String username;
 
     //职称（老师，实验员专属）

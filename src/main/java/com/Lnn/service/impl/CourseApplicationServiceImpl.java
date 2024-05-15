@@ -1,10 +1,17 @@
 package com.Lnn.service.impl;
 
+import com.Lnn.constants.SystemConstants;
 import com.Lnn.domain.Result;
 import com.Lnn.domain.dto.CourseApplicationDto;
 import com.Lnn.domain.dto.CourseApplicationUpdateDto;
+import com.Lnn.domain.dto.PageResult;
+import com.Lnn.domain.entity.User;
 import com.Lnn.domain.vo.CourseApplicationVO;
+import com.Lnn.service.TermLabService;
+import com.Lnn.service.TermService;
 import com.Lnn.util.BeanCopyUtil;
+import com.Lnn.util.LoginUserUtil;
+import com.Lnn.util.RedisCache;
 import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
@@ -29,11 +36,22 @@ public class CourseApplicationServiceImpl extends ServiceImpl<CourseApplicationM
     @Autowired
     private CourseApplicationMapper courseApplicationMapper;
 
+    @Autowired
+    private TermService termService;
+
+
     @Override
     public Result insert(CourseApplicationDto courseApplicationDto) {
 
         CourseApplication courseApplication = BeanCopyUtil.copyBean(courseApplicationDto,CourseApplication.class);
         courseApplication.setState(0);//设置状态 未排课
+        User user = LoginUserUtil.getUser();
+
+        courseApplication.setTeacherId(user.getId());
+        courseApplication.setTeacherName(user.getUsername());
+
+        courseApplication.setTerm(termService.getNowTerm());
+
         courseApplicationMapper.insert(courseApplication);
 
         return Result.ok("插入成功",null);
@@ -42,10 +60,11 @@ public class CourseApplicationServiceImpl extends ServiceImpl<CourseApplicationM
 
     //教师查看自己的排课申请
     @Override
-    public Result getCourseByTeacherId(Integer teacherId,Integer pageNum,Integer pageSize) {
+    public Result getCourseByTeacherId(Integer pageNum,Integer pageSize) {
+
+        Integer teacherId = LoginUserUtil.getUser().getId();
 
         LambdaQueryWrapper<CourseApplication> queryWrapper = new LambdaQueryWrapper<>();
-
         queryWrapper.eq(CourseApplication::getTeacherId,teacherId);
 
         Page<CourseApplication> page = new Page<>(pageNum,pageSize);
@@ -69,13 +88,18 @@ public class CourseApplicationServiceImpl extends ServiceImpl<CourseApplicationM
         return Result.ok("修改成功",null);
     }
 
+
+    //管理员查看所有排课申请
+
     @Override
     public Result getAll(Integer pageNum,Integer pageSize) {
 
         Page<CourseApplication> page = new Page<>(pageNum,pageSize);
         page(page,null);
 
-        return Result.ok(BeanCopyUtil.copyBeanList(page.getRecords(), CourseApplicationVO.class));
+        List<CourseApplicationVO> list = BeanCopyUtil.copyBeanList(page.getRecords(), CourseApplicationVO.class);
+        PageResult pageResult = new PageResult(list,pageNum,pageSize,page.getTotal());
+        return Result.ok(pageResult);
     }
 }
 

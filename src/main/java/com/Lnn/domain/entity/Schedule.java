@@ -2,6 +2,10 @@ package com.Lnn.domain.entity;
 
 
 import java.io.Serializable;
+import java.time.LocalDateTime;
+import java.util.Date;
+
+import com.baomidou.mybatisplus.annotation.IdType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,14 +23,11 @@ import com.baomidou.mybatisplus.annotation.TableName;
 @TableName("schedule")
 public class Schedule  {
     
-    @TableId
+    @TableId(type = IdType.AUTO)
     private Integer id;
-
     //学期
     private String term;
-    
-    //标记是否是当前学期
-    private Integer state;
-    
+
+    private Date beginTime;
     
 }

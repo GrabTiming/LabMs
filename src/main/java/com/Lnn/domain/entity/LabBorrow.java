@@ -1,7 +1,5 @@
 package com.Lnn.domain.entity;
 
-import java.time.LocalDateTime;
-import java.util.Date;
 
 import java.io.Serializable;
 
@@ -13,9 +11,9 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 /**
  * (LabBorrow)表实体类
- * 实验室借用 申请
+ *
  * @author Liang2003
- * @since 2024-04-26 13:59:02
+ * @since 2024-05-14 15:57:16
  */
 @Data
 @AllArgsConstructor
@@ -26,35 +24,15 @@ public class LabBorrow  {
     @TableId(type = IdType.AUTO)
     private Integer id;
 
+    private String term;
+    
     //实验室id
     private Integer labId;
     
-    //实验室名称
     private String labName;
     
-    //学生id
-    private Integer studentId;
-    
-    //学生姓名
-    private String studentName;
-    
-    //申请节次
-    private String section;
-    
-    //申请起始周
-    private Integer startWeek;
-    
-    //申请结束周
-    private Integer endWeek;
-    
-    //申请原因
-    private String reason;
-    
-    //申请状态(0未审核，1通过，2驳回，3使用完毕)
-    private Integer state;
-    
-    //填报日期
-    private LocalDateTime createTime;
+    //实验室借用申请的id
+    private Integer applicationId;
     
     
 }

@@ -24,19 +24,19 @@ public class RepairController {
         return repairApplicationService.add(addRepairApplicationDto);
     }
 
-    //教师：查询教师提交的报修申请
+    //教师：查询教师提交的报修申请bb
     @GetMapping("/get/teacher")
-    public Result getRepair(Integer teacherId,Integer pageNum,Integer pageSize)
+    public Result getRepair(Integer pageNum,Integer pageSize)
     {
-        return repairApplicationService.getRepairAppByTeacherId(teacherId,pageNum,pageSize);
+        return repairApplicationService.getRepairAppByTeacherId(pageNum,pageSize);
     }
 
 
     //实验员：列出属于自己管理的实验室 的报修申请
     @GetMapping("get/LabAdmin")
-    public Result getLabRepair(Integer teacherId,Integer pageNum,Integer pageSize)
+    public Result getLabRepair(Integer pageNum,Integer pageSize)
     {
-        return  repairApplicationService.getLabRepair(teacherId,pageNum,pageSize);
+        return  repairApplicationService.getLabRepair(pageNum,pageSize);
     }
 
     //实验员：设置报修申请的状态

@@ -12,15 +12,6 @@ public class CourseApplicationUpdateDto {
 
     private Integer id;
 
-    //上课学期
-    private String term;
-
-    //教师id
-    private Integer teacherId;
-
-    //教师姓名
-    private String teacherName;
-
     //实验课id
     private Integer courseId;
 
@@ -46,4 +37,5 @@ public class CourseApplicationUpdateDto {
     //节次
     private String section;
 
+    private String day;
 }

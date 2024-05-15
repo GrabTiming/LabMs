@@ -15,18 +15,6 @@ import java.util.Date;
 @NoArgsConstructor
 public class AddRepairApplicationDto {
 
-    @TableId(type = IdType.AUTO)
-    private Integer id;
-    /**
-     * 报修教师id
-     */
-    private Integer teacherId;
-
-    /**
-     * 报修教师姓名
-     */
-    private String teacherName;
-
     /**
      * 实验室编号
      */
@@ -41,9 +29,5 @@ public class AddRepairApplicationDto {
      * 故障描述
      */
     private String description;
-    /**
-     * 报修日期
-     */
-    private LocalDateTime createTime;
 
 }

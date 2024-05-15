@@ -1,5 +1,6 @@
 package com.Lnn.domain;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -7,22 +8,24 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class Result<T> {
 
     private Integer code;
-    private String msg;
-    private T data;
+    private String message;
+    private T result;
 
     public  Result(Integer code,String msg)
     {
         this.code = code;
-        this.msg = msg;
+        this.message = msg;
     }
 
     public static Result ok(String msg,Object data)
     {
         return new Result<>(200,msg,data);
     }
+
 
     public static Result ok(Object data)
     {

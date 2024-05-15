@@ -1,6 +1,7 @@
 package com.Lnn.service;
 
 import com.Lnn.domain.Result;
+import com.Lnn.domain.dto.ResetPwdDTO;
 import com.Lnn.domain.dto.SelectNameDto;
 import com.Lnn.domain.dto.UserLoginDTO;
 import com.Lnn.domain.dto.UserRegisterDTO;
@@ -25,5 +26,7 @@ public interface UserService extends IService<User> {
     Result selectByCategory(Integer category,Integer pageNum,Integer pageSize);
 
     Result selectByName(SelectNameDto selectNameDto);
+
+    Result resetPwd(ResetPwdDTO resetPwdDTO);
 }
 

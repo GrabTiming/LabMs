@@ -2,11 +2,12 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.Lnn.mapper.RepairApplicationMapper">
 
-    <!--查询管理的实验室的报修申请 -->
-    <select id="getLabRepair" resultType="com.Lnn.domain.entity.RepairApplication">
-        select ra.id, lab.lab_name, teacher_name, description, create_time, state
-        from repair_application ra left join lab on ra.lab_id= lab.id
-        where lab.admin_id = #{id}
+
+    <select id="getByLabAdmin" resultType="com.Lnn.domain.entity.RepairApplication">
+
+        select ra.id,ra.lab_id,ra.lab_name,ra.teacher_id,ra.teacher_name,ra.description,ra.create_time,ra.state
+        from lab left join repair_application ra on lab.id = ra.lab_id
+        where lab.admin_id = #{teacherId}
         limit #{offset},#{pageSize}
     </select>
 </mapper>

@@ -1,9 +1,12 @@
 package com.Lnn.mapper;
 
+import com.Lnn.domain.dto.TermLabDTO;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.Lnn.domain.entity.TermLab;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+
+import java.util.List;
 
 
 /**
@@ -21,5 +24,7 @@ public interface TermLabMapper extends BaseMapper<TermLab> {
 
     @Select("select * from term_lab where lab_id = #{labId} and term = #{term}")
     TermLab get(String term, Integer labId);
+
+    List<TermLabDTO> getAll(String labType);
 }
 

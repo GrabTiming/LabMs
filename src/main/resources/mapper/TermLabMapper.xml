@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.Lnn.mapper.TermLabMapper">
+
+
+    <select id="getAll" resultType="com.Lnn.domain.dto.TermLabDTO">
+
+        select  tl.lab_id,l.lab_name, term ,state
+        from lab l left join term_lab  tl on l.id = tl.lab_id
+        where lab_type = #{labType}
+    </select>
+</mapper>

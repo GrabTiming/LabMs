@@ -15,15 +15,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class CourseApplicationDto {
 
-    //上课学期
-    private String term;
-
-    //教师id
-    private Integer teacherId;
-
-    //教师姓名
-    private String teacherName;
-
     //实验课id
     private Integer courseId;
 
@@ -45,6 +36,8 @@ public class CourseApplicationDto {
 
     //结束周
     private Integer endWeek;
+
+    private String day;
 
     //节次
     private String section;

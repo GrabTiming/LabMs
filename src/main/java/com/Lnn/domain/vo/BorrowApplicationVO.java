@@ -1,16 +1,17 @@
 package com.Lnn.domain.vo;
 
-import com.baomidou.mybatisplus.annotation.TableId;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.junit.jupiter.params.shadow.com.univocity.parsers.annotations.Format;
 
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class LabBorrowVO {
+public class BorrowApplicationVO {
 
     private Integer id;
 
@@ -26,6 +27,8 @@ public class LabBorrowVO {
     //申请结束周
     private Integer endWeek;
 
+    private String day;
+
     //申请原因
     private String reason;
 
@@ -33,6 +36,6 @@ public class LabBorrowVO {
     private Integer state;
 
     //填报日期
-    private LocalDateTime createTime;
+    private Date createTime;
 
 }
